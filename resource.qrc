@@ -1,0 +1,42 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>ico/add_h.png</file>
+        <file>ico/add_n.png</file>
+        <file>ico/close_h.png</file>
+        <file>ico/close_n.png</file>
+        <file>ico/edit_h.png</file>
+        <file>ico/edit_n.png</file>
+        <file>ico/logo.png</file>
+        <file>ico/min_h.png</file>
+        <file>ico/min_n.png</file>
+        <file>ico/next_h.png</file>
+        <file>ico/next_n.png</file>
+        <file>ico/pause_h.png</file>
+        <file>ico/pause_n.png</file>
+        <file>ico/play_h.png</file>
+        <file>ico/play_n.png</file>
+        <file>ico/playlist_h.png</file>
+        <file>ico/playlist_n.png</file>
+        <file>ico/prev_h.png</file>
+        <file>ico/prev_n.png</file>
+        <file>ico/search_h.png</file>
+        <file>ico/search_n.png</file>
+        <file>ico/settings_h.png</file>
+        <file>ico/settings_n.png</file>
+        <file>ico/volume_h.png</file>
+        <file>ico/volume_n.png</file>
+        <file>ico/pointer.png</file>
+        <file>background.jpg</file>
+        <file>ico/listwidget_h.png</file>
+        <file>avatar.png</file>
+        <file>player.png</file>
+        <file>ico/switch.png</file>
+        <file>ico/poly.png</file>
+        <file>ico/loop_h.png</file>
+        <file>ico/loop_n.png</file>
+        <file>ico/loop1_h.png</file>
+        <file>ico/loop1_n.png</file>
+        <file>ico/random_h.png</file>
+        <file>ico/random_n.png</file>
+    </qresource>
+</RCC>

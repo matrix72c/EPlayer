@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>ico/close_h.png</file>
+        <file>ico/close_n.png</file>
+        <file>ico/edit_h.png</file>
+        <file>ico/edit_n.png</file>
+        <file>ico/insert_h.png</file>
+        <file>ico/insert_n.png</file>
+        <file>ico/loop_h.png</file>
+        <file>ico/loop_n.png</file>
+        <file>ico/loop1_h.png</file>
+        <file>ico/loop1_n.png</file>
+        <file>ico/lrc_h.png</file>
+        <file>ico/lrc_n.png</file>
+        <file>ico/min_h.png</file>
+        <file>ico/min_n.png</file>
+        <file>ico/next_h.png</file>
+        <file>ico/next_n.png</file>
+        <file>ico/pause_h.png</file>
+        <file>ico/pause_n.png</file>
+        <file>ico/play_h.png</file>
+        <file>ico/play_n.png</file>
+        <file>ico/playlist_h.png</file>
+        <file>ico/playlist_n.png</file>
+        <file>ico/prev_h.png</file>
+        <file>ico/prev_n.png</file>
+        <file>ico/random_h.png</file>
+        <file>ico/random_n.png</file>
+        <file>ico/search_h.png</file>
+        <file>ico/search_n.png</file>
+        <file>ico/setting_h.png</file>
+        <file>ico/setting_n.png</file>
+        <file>ico/volume_h.png</file>
+        <file>logo.png</file>
+        <file>background.jpg</file>
+        <file>ico/point_music.png</file>
+    </qresource>
+</RCC>

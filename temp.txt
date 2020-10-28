@@ -1,0 +1,101 @@
+QString workPath = QCoreApplication::applicationDirPath();
+    QString listPath = workPath + "/musicList";
+    QDir dir(listPath);
+    if(!dir.exists())//判断文件夹是否存在
+    {
+        dir.mkdir(listPath);
+
+        QFile all(workPath + tr("/musicList/0.txt"));
+        if(!all.open(QIODevice::WriteOnly | QIODevice::Text))
+            qDebug() << all.errorString();
+        all.write("所有歌曲\n");
+        all.close();
+
+        QFile love(workPath + tr("/musicList/1.txt"));
+        if(!love.open(QIODevice::WriteOnly | QIODevice::Text))
+            qDebug() << love.errorString();
+        love.write("我喜欢的\n");
+        love.close();
+
+        QFile fav(workPath + tr("/musicList/2.txt"));
+        if(!fav.open(QIODevice::WriteOnly | QIODevice::Text))
+            qDebug() << fav.errorString();
+        fav.write("我收藏的\n");
+        fav.close();
+    }
+    dir.setFilter(QDir::Files);
+    QFileInfoList listList = dir.entryInfoList();
+    int listCount = listList.count();
+    for(int i = 0; i < listCount; i++)
+    {
+        QFileInfo listInfo = listList[i];
+        QString suffix = listInfo.suffix();
+        if(QString::compare(suffix, QString(tr("txt")), Qt::CaseInsensitive) == 0)
+        {
+            QListWidgetItem *ite = new QListWidgetItem(ui->listWidget);
+            ite->setText(listInfo.baseName());
+            ite->setIcon(QIcon(":/img/ico/playlist_n.png"));
+        }
+    }
+
+db.open();
+    QSqlQuery query(db);
+    for(auto it:musicUrls)
+    {
+        QMap<QString, QString> mp;
+        char* pa;
+        QByteArray ba = it.toString().toLocal8Bit();
+        pa = ba.data();
+
+        AVFormatContext *fmt_ctx = NULL;
+        AVDictionaryEntry *tag = NULL;
+
+        av_register_all();
+        int ret;
+        if ((ret = avformat_open_input(&fmt_ctx, pa, NULL, NULL))){
+            printf("Fail to open file");
+        }
+
+        //读取metadata中所有的tag
+        while ((tag = av_dict_get(fmt_ctx->metadata, "", tag, AV_DICT_IGNORE_SUFFIX))){
+            QString keyString = tag->key;
+            QString valueString = QString::fromUtf8(tag->value);
+            mp.insert(keyString, valueString);
+        }
+        QString _name = it.fileName(), _art = "佚名", _album = "未命名专辑";
+        if(mp.count("title")) _name = mp["title"];
+        if(mp.count("artist")) _art = mp["artist"];
+        if(mp.count("album")) _album = mp["album"];
+        query.exec("INSERT INTO music VALUES(NULL, '" + _name +"', '" + _art + "', '" + _album + "')");
+    }
+    db.close();
+
+
+
+QString name = ui->nameEdit->text();
+    QString intro = ui->introEdit->text();
+    if(name.size()==0)
+    {
+        QMessageBox *msgBox;
+        msgBox = new QMessageBox("错误",
+                                 "歌单名字不能为空",
+                                 QMessageBox::Critical,
+                                 QMessageBox::Ok | QMessageBox::Default,
+                                 QMessageBox::Cancel | QMessageBox::Escape,
+                                 0);
+        msgBox->show();
+    }
+    else
+    {
+
+        MainWindow * p = (MainWindow*) parentWidget();  //获取父窗口指针
+        QString qsql = "UPDATE list SET name='"+name+"',intro='"+intro+"' WHERE id="+QString::number(p->curListId);
+        if(intro.size() == 0) qsql = "UPDATE list SET name='"+name+"',intro=null WHERE id="+QString::number(p->curListId);
+        p->db.open();
+        QSqlQuery query(p->db);
+        query.exec(qsql);
+        p->db.close();
+        p->reloadList();
+
+        this->close();
+    }
