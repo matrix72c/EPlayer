@@ -5,7 +5,7 @@ A desktop music player based on QT 5.14.1
 
 有参考部分QT音乐播放器
 
-{% raw %}<video src="https://img.matrix72.top/qt-player.mp4" controls="controls" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto; margin-bottom: 10; margin-top: 10;"> your browser does not support the video tag </video>{% endraw%}
+<video src="https://img.matrix72.top/qt-player.mp4" controls="controls" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto; margin-bottom: 10; margin-top: 10;"> your browser does not support the video tag </video>
 
 
 
